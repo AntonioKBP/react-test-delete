@@ -1,66 +1,57 @@
 import PropTypes from 'prop-types';
-import { Component } from "react";
+import { Component } from 'react';
+import { ReactComponent as Icon } from '../Icons/search.svg';
 
-
-import {SearchFormButton, SearchForm, Header, FormInput} from './Searchbar.styled'
+import { SearchButton, Form, Header, Input } from './Searchbar.styled';
 
 class Searchbar extends Component {
-    state = {
-      name: '',
-      disabled: true,
-    }
-    
-    handleChange = (e) => {
-      const {name, value} = e.target;
-        this.setState({[name]: value})
-        if(e.target.value.length > 0){
-          this.setState(({
-            disabled: false
-          }))
-        }
-    }
-    
+  state = {
+    value: '',
+  };
 
-    handleSubmit = (e) => {
-      e.preventDefault()
-      this.props.onSubmit(this.state.name)
-      this.reset()
-      this.setState({disabled: true})
-    }
-    
-    reset(){
-      this.setState({name: ''})
-    }
+  handleChange = e => {
+    const { value } = e.target;
+    this.setState({ value });
+  };
 
-    render(){
-      const {name, disabled} = this.state
-        return (
-            <Header>
-  <SearchForm  onSubmit={this.handleSubmit}>
-    <SearchFormButton type="submit"  disabled={disabled }>
-      <span>Search</span>
-    </SearchFormButton>
+  handleSubmit = e => {
+    e.preventDefault();
+    this.props.onSubmit(this.state.value);
+    this.reset();
+  };
 
-    <FormInput
-      
-      type="text"
-      autoComplete="off"
-      autoFocus
-      placeholder="Search images and photos"
-      onChange={this.handleChange}
-      name='name'
-      value={name}
-      disabled={false}
-    />
-  </SearchForm>
-</Header>
-      )
-    }
+  reset() {
+    this.setState({ name: '' });
+  }
+
+  render() {
+    const { value } = this.state;
+    return (
+      <Header>
+        <Form onSubmit={this.handleSubmit}>
+          <SearchButton type="submit">
+            <span>
+              <Icon />
+            </span>
+          </SearchButton>
+
+          <Input
+            type="text"
+            autoComplete="off"
+            autoFocus
+            placeholder="Search images and photos"
+            onChange={this.handleChange}
+            name="name"
+            value={value}
+          />
+        </Form>
+      </Header>
+    );
+  }
 }
 
 export default Searchbar;
 
 Searchbar.propTypes = {
-  disabled: PropTypes.bool.isRequired,
   onSubmit: PropTypes.func.isRequired,
-}
+};

@@ -91,12 +91,7 @@ export class App extends Component {
 
         {
           <ImageGallery>
-            {
-              <ImageGalleryItem
-                img={image}
-                handleModalInfo={this.handleModal}
-              />
-            }
+            {<ImageGalleryItem img={image} onhandleModal={this.handleModal} />}
           </ImageGallery>
         }
         {isLoading && <Loader />}
