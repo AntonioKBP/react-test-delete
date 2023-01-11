@@ -65,7 +65,8 @@ export const Input = styled.input`
   width: 100%;
   height: 48px;
   border: 0;
-
+  font-size: 20px;
+  margin-left: 10px;
   background-size: 40%;
   background-repeat: no-repeat;
   background-position: center;

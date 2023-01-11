@@ -4,7 +4,7 @@ import { ReactComponent as Icon } from '../Icons/search.svg';
 
 import { SearchButton, Form, Header, Input } from './Searchbar.styled';
 
-class Searchbar extends Component {
+export class SearchBar extends Component {
   state = {
     value: '',
   };
@@ -50,8 +50,6 @@ class Searchbar extends Component {
   }
 }
 
-export default Searchbar;
-
-Searchbar.propTypes = {
+SearchBar.propTypes = {
   onSubmit: PropTypes.func.isRequired,
 };

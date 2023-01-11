@@ -3,16 +3,16 @@ import { toast } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 import { Component } from 'react';
-import Button from './Button/Button';
-import Searchbar from './Searchbar/Searchbar';
-import ImageGallery from './ImageGallery/ImageGallery';
-import ImageGalleryItem from './ImageGalleryItem/ImageGalleryItem';
+import { Button } from './Button/Button';
+import { SearchBar } from './Searchbar/Searchbar';
+import { ImageGallery } from './ImageGallery/ImageGallery';
+import { ImageGalleryItem } from './ImageGalleryItem/ImageGalleryItem';
 import { Loader } from './Loader/Loader';
 
 import { Container } from './App.styled';
-import { Toast } from './ToastContainer/ToastContainer';
-import Modal from './Modal/Modal';
-import ModalInfo from './Modal/ModalInfo';
+import { Toast } from './Toast/ToastContainer';
+import { Modal } from './Modal/Modal';
+import { ModalInner } from './Modal/ModalInner';
 
 const KEY = '31349139-c34332f5cc1455d1f889740ec';
 const BASE_URL = 'https://pixabay.com/api/?';
@@ -65,7 +65,7 @@ export class App extends Component {
         }
       } catch (error) {
         console.log(error);
-        toast.error('We were unable to process your request');
+        toast.error('Cannot process your request');
       } finally {
         this.setState({ isLoading: false });
       }
@@ -87,18 +87,23 @@ export class App extends Component {
 
     return (
       <Container>
-        <Searchbar onSubmit={this.handleSearch} />
+        <SearchBar onSubmit={this.handleSearch} />
 
         {
           <ImageGallery>
-            {<ImageGalleryItem img={image} onhandleModal={this.handleModal} />}
+            {
+              <ImageGalleryItem
+                image={image}
+                onhandleModal={this.handleModal}
+              />
+            }
           </ImageGallery>
         }
         {isLoading && <Loader />}
         {<Toast />}
         {showModal && (
           <Modal onClose={this.toggleModal}>
-            <ModalInfo url={url} alt={alt} />
+            <ModalInner url={url} alt={alt} />
           </Modal>
         )}
         {image.length === 0 || imageHits.totalHits === image.length || (

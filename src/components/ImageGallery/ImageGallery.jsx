@@ -1,19 +1,11 @@
 import PropTypes from 'prop-types';
 
-import { GalleryList } from "./ImageGallery.styled";
+import { ImagesList } from './ImageGallery.styled';
 
-
-const ImageGallery = ({children}) => {
-    
-    return (
-        <GalleryList >
-        {children}
-        </GalleryList>
-    )
-}
-
-export default ImageGallery;
+export const ImageGallery = ({ children }) => {
+  return <ImagesList>{children}</ImagesList>;
+};
 
 ImageGallery.propTypes = {
-    children:  PropTypes.any.isRequired,
-}
+  children: PropTypes.any.isRequired,
+};

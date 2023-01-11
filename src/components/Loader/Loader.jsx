@@ -1,16 +1,22 @@
-import { Triangle } from 'react-loader-spinner';
+import { ThreeCircles } from 'react-loader-spinner';
+
+import { LoaderDiv } from './Loader.styled';
 
 export const Loader = () => {
   return (
-    <>
-      <Triangle
-        height="80"
-        width="80"
-        color="red"
-        ariaLabel="triangle-loading"
+    <LoaderDiv>
+      <ThreeCircles
+        height="100"
+        width="100"
+        color="#4fa94d"
         wrapperStyle={{}}
-        wrapperClass="override"
+        wrapperClass=""
+        visible={true}
+        ariaLabel="three-circles-rotating"
+        outerCircleColor="blue"
+        innerCircleColor="yellow"
+        middleCircleColor="blue"
       />
-    </>
+    </LoaderDiv>
   );
 };
